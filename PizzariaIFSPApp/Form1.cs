@@ -7,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace PizzariaIFSPApp
 {
     public partial class Form1 : Form
     {
+        private int id;
         public Form1()
         {
             InitializeComponent();
@@ -64,6 +66,7 @@ namespace PizzariaIFSPApp
             txbTelefone.Clear();
             txbSenha.Clear();
             txbNome.Focus();
+            btnExcluir.Visible = false;
         }
 
         private void btnLimpar_Click(object sender, EventArgs e)
@@ -71,14 +74,35 @@ namespace PizzariaIFSPApp
             ClearFields();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             UpdateListView();
+        }
+        private void ltvColaboradores_MouseClick(object sender, MouseEventArgs e)
+        {
+            int index = ltvColaboradores.FocusedItem.Index;
+            id = int.Parse(ltvColaboradores.Items[index].SubItems[0].Text);
+            txbNome.Text = ltvColaboradores.Items[index].SubItems[1].Text;
+            txbSenha.Text = ltvColaboradores.Items[index].SubItems[2].Text;
+            txbTelefone.Text = ltvColaboradores.Items[index].SubItems[3].Text;
+            
+            btnExcluir.Visible = true;
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            ColaboradorDAO colabDao = new ColaboradorDAO();
+
+            try
+            {
+                colabDao.Delete(id);
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message, "AVISO DE ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            UpdateListView();
+            ClearFields();
         }
     }
 }

@@ -41,6 +41,7 @@
             this.clhNome = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clhTelefone = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clhSenha = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnExcluir = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnMostrar
@@ -119,6 +120,7 @@
             this.clhNome,
             this.clhTelefone,
             this.clhSenha});
+            this.ltvColaboradores.FullRowSelect = true;
             this.ltvColaboradores.HideSelection = false;
             this.ltvColaboradores.Location = new System.Drawing.Point(15, 140);
             this.ltvColaboradores.Name = "ltvColaboradores";
@@ -126,6 +128,7 @@
             this.ltvColaboradores.TabIndex = 7;
             this.ltvColaboradores.UseCompatibleStateImageBehavior = false;
             this.ltvColaboradores.View = System.Windows.Forms.View.Details;
+            this.ltvColaboradores.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ltvColaboradores_MouseClick);
             // 
             // clhId
             // 
@@ -145,11 +148,22 @@
             // 
             this.clhSenha.Text = "SENHA";
             // 
+            // btnExcluir
+            // 
+            this.btnExcluir.Location = new System.Drawing.Point(289, 22);
+            this.btnExcluir.Name = "btnExcluir";
+            this.btnExcluir.Size = new System.Drawing.Size(97, 40);
+            this.btnExcluir.TabIndex = 8;
+            this.btnExcluir.Text = "EXCLUIR";
+            this.btnExcluir.UseVisualStyleBackColor = true;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(604, 328);
+            this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.ltvColaboradores);
             this.Controls.Add(this.txbSenha);
             this.Controls.Add(this.lblSenha);
@@ -183,6 +197,7 @@
         private System.Windows.Forms.ColumnHeader clhNome;
         private System.Windows.Forms.ColumnHeader clhTelefone;
         private System.Windows.Forms.ColumnHeader clhSenha;
+        private System.Windows.Forms.Button btnExcluir;
     }
 }
 
