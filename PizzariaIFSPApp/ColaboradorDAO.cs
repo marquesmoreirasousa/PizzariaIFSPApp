@@ -70,5 +70,45 @@ namespace PizzariaIFSPApp
 
             return listaDeColab;
         }
+        public void Update(Colaborador colab)
+        {
+            Cmd.Connection = Con.ReturnConnection();
+            Cmd.CommandText = @"UPDATE Colaborador SET Nome = @nome, Telefone = @tel, Senha = @senha WHERE Id = @id";
+            Cmd.Parameters.AddWithValue("@id", colab.Id);
+            Cmd.Parameters.AddWithValue("@nome", colab.Nome);
+            Cmd.Parameters.AddWithValue("@tel", colab.Telefone);
+            Cmd.Parameters.AddWithValue("@senha", colab.Senha);
+            try
+            {
+                Cmd.ExecuteNonQuery();
+            }
+            catch (Exception err)
+            {
+                throw new Exception("Erro: Problemas ao realizar atualização no banco.\n" + err.Message);
+            }
+            finally
+            {
+                Con.CloseConnection();
+            }
+        }
+
+        public void Delete(int colabId)
+        {
+            Cmd.Connection = Con.ReturnConnection();
+            Cmd.CommandText = @"DELETE fROM Colaborador WHERE Id = @id";
+            Cmd.Parameters.AddWithValue("@id", colabId);
+            try
+            {
+                Cmd.ExecuteNonQuery();
+            }
+            catch (Exception err)
+            {
+                throw new Exception("Erro: Problemas ao excluir colaborador no banco.\n" + err.Message);
+            }
+            finally
+            {
+                Con.CloseConnection();
+            }
+        }
     }
 }
