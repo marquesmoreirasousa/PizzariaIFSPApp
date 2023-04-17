@@ -70,10 +70,11 @@ namespace PizzariaIFSPApp
 
             return listaDeColab;
         }
-        public void Update(Colaborador colab)
+        public void Atualizar(Colaborador colab)
         {
             Cmd.Connection = Con.ReturnConnection();
-            Cmd.CommandText = @"UPDATE Colaborador SET Nome = @nome, Telefone = @tel, Senha = @senha WHERE Id = @id";
+            Cmd.CommandText = @"UPDATE Colaborador SET Nome = @nome, Telefone = @tel,
+            Senha = @senha WHERE Id = @id";
             Cmd.Parameters.AddWithValue("@id", colab.Id);
             Cmd.Parameters.AddWithValue("@nome", colab.Nome);
             Cmd.Parameters.AddWithValue("@tel", colab.Telefone);
@@ -92,7 +93,7 @@ namespace PizzariaIFSPApp
             }
         }
 
-        public void Delete(int colabId)
+        public void Excluir(int colabId)
         {
             Cmd.Connection = Con.ReturnConnection();
             Cmd.CommandText = @"DELETE fROM Colaborador WHERE Id = @id";

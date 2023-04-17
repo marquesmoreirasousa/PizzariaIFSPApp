@@ -45,13 +45,25 @@ namespace PizzariaIFSPApp
             string nome = txbNome.Text;
             string telefone = txbTelefone.Text;
             string senha = txbSenha.Text;
-
-            Colaborador colab = new Colaborador(nome, telefone, senha);
+            
+            Colaborador colab;
+            
+            
 
             try
             {
                 ColaboradorDAO colaboradorDAO = new ColaboradorDAO();
-                colaboradorDAO.Inserir(colab);
+                if (btnMostrar.Text == "CADASTRAR")
+                {
+                    colab = new Colaborador(nome, telefone, senha);
+                    colaboradorDAO.Inserir(colab);
+                }
+                else
+                {
+                    colab = new Colaborador(id, nome, telefone, senha);
+                    colaboradorDAO.Atualizar(colab);
+                }
+                
                 UpdateListView();
             }
             catch(Exception erro)
@@ -67,6 +79,7 @@ namespace PizzariaIFSPApp
             txbSenha.Clear();
             txbNome.Focus();
             btnExcluir.Visible = false;
+            btnMostrar.Text = "CADASTRAR";
         }
 
         private void btnLimpar_Click(object sender, EventArgs e)
@@ -83,9 +96,10 @@ namespace PizzariaIFSPApp
             int index = ltvColaboradores.FocusedItem.Index;
             id = int.Parse(ltvColaboradores.Items[index].SubItems[0].Text);
             txbNome.Text = ltvColaboradores.Items[index].SubItems[1].Text;
-            txbSenha.Text = ltvColaboradores.Items[index].SubItems[2].Text;
-            txbTelefone.Text = ltvColaboradores.Items[index].SubItems[3].Text;
-            
+            txbTelefone.Text = ltvColaboradores.Items[index].SubItems[2].Text;
+            txbSenha.Text = ltvColaboradores.Items[index].SubItems[3].Text;
+
+            btnMostrar.Text = "EDITAR";
             btnExcluir.Visible = true;
         }
 
@@ -95,7 +109,7 @@ namespace PizzariaIFSPApp
 
             try
             {
-                colabDao.Delete(id);
+                colabDao.Excluir(id);
             }
             catch (Exception err)
             {
