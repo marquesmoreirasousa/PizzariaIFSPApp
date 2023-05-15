@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace PizzariaIFSPApp
 {
@@ -45,13 +46,19 @@ namespace PizzariaIFSPApp
             string nome = txbNome.Text;
             string telefone = txbTelefone.Text;
             string senha = txbSenha.Text;
-            
+
             Colaborador colab;
             
             
 
             try
             {
+                if (txbSenha.Text != txbConfSenha.Text)
+                {
+                    MessageBox.Show("As senhas dever ser iguais!", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txbSenha.Focus();
+                    return;
+                }
                 ColaboradorDAO colaboradorDAO = new ColaboradorDAO();
                 if (btnMostrar.Text == "CADASTRAR")
                 {
@@ -69,6 +76,7 @@ namespace PizzariaIFSPApp
             catch(Exception erro)
             {
                 MessageBox.Show(erro.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
             ClearFields();
         }
@@ -77,7 +85,10 @@ namespace PizzariaIFSPApp
             txbNome.Clear();
             txbTelefone.Clear();
             txbSenha.Clear();
+            txbConfSenha.Clear();
+            mktCpf.Clear();
             txbNome.Focus();
+            ckbSenha.Checked = false;
             btnExcluir.Visible = false;
             btnMostrar.Text = "CADASTRAR";
         }
@@ -117,6 +128,31 @@ namespace PizzariaIFSPApp
             }
             UpdateListView();
             ClearFields();
+        }
+
+        private void ckbSenha_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ckbSenha.Checked)
+            {
+                txbSenha.PasswordChar = '\0';
+                txbConfSenha.PasswordChar = '\0';
+            }
+            else
+            {
+                txbSenha.PasswordChar = '*';
+                txbConfSenha.PasswordChar = '*';
+            }
+        }
+
+        private void txbSenha_MouseHover(object sender, EventArgs e)
+        {
+            ttpSenha.SetToolTip(txbSenha, "Deve conter: 8 caracteres," +
+                " letra maiúscula e número!");
+        }
+
+        private void txbConfSenha_MouseHover(object sender, EventArgs e)
+        {
+            ttpSenha.SetToolTip(txbConfSenha, "Deve ser idêntico à senha!");
         }
     }
 }

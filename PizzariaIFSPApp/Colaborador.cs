@@ -1,8 +1,10 @@
-﻿using System;
+﻿using PizzariaIFSPApp.Util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Schema;
 
 namespace PizzariaIFSPApp
 {
@@ -16,14 +18,14 @@ namespace PizzariaIFSPApp
 
         public Colaborador(string nome, string tel, string senha)
         {
-            _nome = nome;
-            _telefone = tel;
-            _senha = senha;
+            Nome = nome;
+            Telefone = tel;
+            Senha = senha;
         }
 
         public Colaborador(int id, string nome, string tel, string senha): this(nome, tel, senha)
         {
-            _id = id;
+            Id = id;
         }
         public int Id
         {
@@ -34,7 +36,12 @@ namespace PizzariaIFSPApp
         public string Nome
         {
             get { return _nome; }
-            set { _nome = value; }
+            set {
+                
+                if (string.IsNullOrEmpty(value) || value.Length < 3)
+                    throw new Exception("O nome precisa ter ao menos 3 caracteres.");
+                _nome = value; 
+            }
         }
         public string Telefone
         {
@@ -44,7 +51,11 @@ namespace PizzariaIFSPApp
         public string Senha
         {
             get { return _senha; }
-            set { _senha = value; }
+            set {
+                if (!Seguranca.ValidarSenha(value))
+                    throw new Exception("Senha não atende aos requisitos mínimos!");
+                _senha = value; 
+            }
         }
     }
 }

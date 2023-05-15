@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.btnMostrar = new System.Windows.Forms.Button();
             this.lblNome = new System.Windows.Forms.Label();
             this.txbNome = new System.Windows.Forms.TextBox();
@@ -42,14 +44,22 @@
             this.clhTelefone = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clhSenha = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnExcluir = new System.Windows.Forms.Button();
+            this.mktCpf = new System.Windows.Forms.MaskedTextBox();
+            this.lblCpf = new System.Windows.Forms.Label();
+            this.txbConfSenha = new System.Windows.Forms.TextBox();
+            this.lblConfSenha = new System.Windows.Forms.Label();
+            this.ckbSenha = new System.Windows.Forms.CheckBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.ttpSenha = new System.Windows.Forms.ToolTip(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnMostrar
             // 
-            this.btnMostrar.Location = new System.Drawing.Point(495, 22);
+            this.btnMostrar.Location = new System.Drawing.Point(495, 12);
             this.btnMostrar.Name = "btnMostrar";
             this.btnMostrar.Size = new System.Drawing.Size(97, 40);
-            this.btnMostrar.TabIndex = 4;
+            this.btnMostrar.TabIndex = 6;
             this.btnMostrar.Text = "CADASTRAR";
             this.btnMostrar.UseVisualStyleBackColor = true;
             this.btnMostrar.Click += new System.EventHandler(this.btnMostrar_Click);
@@ -67,15 +77,15 @@
             // 
             this.txbNome.Location = new System.Drawing.Point(15, 25);
             this.txbNome.Name = "txbNome";
-            this.txbNome.Size = new System.Drawing.Size(256, 20);
+            this.txbNome.Size = new System.Drawing.Size(272, 20);
             this.txbNome.TabIndex = 0;
             // 
             // btnLimpar
             // 
-            this.btnLimpar.Location = new System.Drawing.Point(392, 22);
+            this.btnLimpar.Location = new System.Drawing.Point(495, 59);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(97, 40);
-            this.btnLimpar.TabIndex = 3;
+            this.btnLimpar.TabIndex = 7;
             this.btnLimpar.Text = "LIMPAR";
             this.btnLimpar.UseVisualStyleBackColor = true;
             this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
@@ -84,7 +94,7 @@
             // 
             this.txbTelefone.Location = new System.Drawing.Point(15, 65);
             this.txbTelefone.Name = "txbTelefone";
-            this.txbTelefone.Size = new System.Drawing.Size(259, 20);
+            this.txbTelefone.Size = new System.Drawing.Size(122, 20);
             this.txbTelefone.TabIndex = 1;
             // 
             // lblTelefone
@@ -101,8 +111,9 @@
             this.txbSenha.Location = new System.Drawing.Point(15, 105);
             this.txbSenha.Name = "txbSenha";
             this.txbSenha.PasswordChar = '*';
-            this.txbSenha.Size = new System.Drawing.Size(109, 20);
-            this.txbSenha.TabIndex = 5;
+            this.txbSenha.Size = new System.Drawing.Size(122, 20);
+            this.txbSenha.TabIndex = 3;
+            this.txbSenha.MouseHover += new System.EventHandler(this.txbSenha_MouseHover);
             // 
             // lblSenha
             // 
@@ -122,9 +133,9 @@
             this.clhSenha});
             this.ltvColaboradores.FullRowSelect = true;
             this.ltvColaboradores.HideSelection = false;
-            this.ltvColaboradores.Location = new System.Drawing.Point(15, 140);
+            this.ltvColaboradores.Location = new System.Drawing.Point(12, 165);
             this.ltvColaboradores.Name = "ltvColaboradores";
-            this.ltvColaboradores.Size = new System.Drawing.Size(577, 176);
+            this.ltvColaboradores.Size = new System.Drawing.Size(577, 190);
             this.ltvColaboradores.TabIndex = 7;
             this.ltvColaboradores.UseCompatibleStateImageBehavior = false;
             this.ltvColaboradores.View = System.Windows.Forms.View.Details;
@@ -150,7 +161,7 @@
             // 
             // btnExcluir
             // 
-            this.btnExcluir.Location = new System.Drawing.Point(289, 22);
+            this.btnExcluir.Location = new System.Drawing.Point(495, 105);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(97, 40);
             this.btnExcluir.TabIndex = 8;
@@ -159,11 +170,73 @@
             this.btnExcluir.Visible = false;
             this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
+            // mktCpf
+            // 
+            this.mktCpf.Location = new System.Drawing.Point(143, 65);
+            this.mktCpf.Mask = "000,000,000-00";
+            this.mktCpf.Name = "mktCpf";
+            this.mktCpf.Size = new System.Drawing.Size(109, 20);
+            this.mktCpf.TabIndex = 2;
+            // 
+            // lblCpf
+            // 
+            this.lblCpf.AutoSize = true;
+            this.lblCpf.Location = new System.Drawing.Point(140, 49);
+            this.lblCpf.Name = "lblCpf";
+            this.lblCpf.Size = new System.Drawing.Size(27, 13);
+            this.lblCpf.TabIndex = 10;
+            this.lblCpf.Text = "CPF";
+            // 
+            // txbConfSenha
+            // 
+            this.txbConfSenha.Location = new System.Drawing.Point(143, 105);
+            this.txbConfSenha.Name = "txbConfSenha";
+            this.txbConfSenha.PasswordChar = '*';
+            this.txbConfSenha.Size = new System.Drawing.Size(109, 20);
+            this.txbConfSenha.TabIndex = 4;
+            this.txbConfSenha.MouseHover += new System.EventHandler(this.txbConfSenha_MouseHover);
+            // 
+            // lblConfSenha
+            // 
+            this.lblConfSenha.AutoSize = true;
+            this.lblConfSenha.Location = new System.Drawing.Point(140, 89);
+            this.lblConfSenha.Name = "lblConfSenha";
+            this.lblConfSenha.Size = new System.Drawing.Size(85, 13);
+            this.lblConfSenha.TabIndex = 12;
+            this.lblConfSenha.Tag = "";
+            this.lblConfSenha.Text = "Confirmar Senha";
+            // 
+            // ckbSenha
+            // 
+            this.ckbSenha.AutoSize = true;
+            this.ckbSenha.Location = new System.Drawing.Point(272, 108);
+            this.ckbSenha.Name = "ckbSenha";
+            this.ckbSenha.Size = new System.Drawing.Size(15, 14);
+            this.ckbSenha.TabIndex = 5;
+            this.ckbSenha.UseVisualStyleBackColor = true;
+            this.ckbSenha.CheckedChanged += new System.EventHandler(this.ckbSenha_CheckedChanged);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(258, 72);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(29, 30);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 14;
+            this.pictureBox1.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(604, 328);
+            this.ClientSize = new System.Drawing.Size(606, 367);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.ckbSenha);
+            this.Controls.Add(this.txbConfSenha);
+            this.Controls.Add(this.lblConfSenha);
+            this.Controls.Add(this.lblCpf);
+            this.Controls.Add(this.mktCpf);
             this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.ltvColaboradores);
             this.Controls.Add(this.txbSenha);
@@ -178,6 +251,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Pizzaria IFSP";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -199,6 +273,13 @@
         private System.Windows.Forms.ColumnHeader clhTelefone;
         private System.Windows.Forms.ColumnHeader clhSenha;
         private System.Windows.Forms.Button btnExcluir;
+        private System.Windows.Forms.MaskedTextBox mktCpf;
+        private System.Windows.Forms.Label lblCpf;
+        private System.Windows.Forms.TextBox txbConfSenha;
+        private System.Windows.Forms.Label lblConfSenha;
+        private System.Windows.Forms.CheckBox ckbSenha;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ToolTip ttpSenha;
     }
 }
 
